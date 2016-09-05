@@ -5,13 +5,12 @@
 # Instalar o modulo
 pip install pyzabbix
 
-#Lista o json formatado
+# Lista o json formatado
 print json.dumps(<json_file>,indent=2, sort_keys=True)
 """
 
 from pyzabbix import ZabbixAPI
 import json
-import requests
 
 ZSERVER_URL = "http://localhost/zabbix"
 ZSERVER_URL_API = ZSERVER_URL + "/api_jsonrpc.php"
