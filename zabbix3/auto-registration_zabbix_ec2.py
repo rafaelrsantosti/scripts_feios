@@ -25,12 +25,15 @@ def get_zserver_version():
 
 def get_all_hosts_monitored():
     all_hosts_monitored = zserver.do_request('host.get')
+    hosts = []
     for results in all_hosts_monitored['result']:
-        print (results['host'])
+        hosts.append(results['host'])
+    return hosts
 
 # Informa a versao do zabbix Server
-print "Zabbix Server:", get_zserver_version()
+print "Zabbix Server Version:\n", "- ", get_zserver_version()
 
 # Lista todos os hosts
 print "\nServidores:"
-get_all_hosts_monitored()
+for hosts in get_all_hosts_monitored():
+    print "-", hosts
