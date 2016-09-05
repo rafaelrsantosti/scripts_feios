@@ -17,21 +17,20 @@ ZSERVER_URL_API = ZSERVER_URL + "/api_jsonrpc.php"
 ZSERVER_USER = "Admin"
 ZSERVER_PASSWORD = "zabbix"
 
-zserver = ZabbixAPI(ZSERVER_URL)
-
-zserver.login(ZSERVER_USER,ZSERVER_PASSWORD)
+zserver = ZabbixAPI(ZSERVER_URL, user=ZSERVER_USER, password=ZSERVER_PASSWORD)
 
 def get_zserver_version():
     zserver_version = zserver.do_request('apiinfo.version')
     return zserver_version['result']
 
-def get_all_hosts():
-    all_hosts = zserver.do_request('host.get')
-    for hosts in all_hosts['result']:
-        return (hosts['name'])
+def get_all_hosts_monitored():
+    all_hosts_monitored = zserver.do_request('host.get')
+    for results in all_hosts_monitored['result']:
+        print (results['host'])
 
 # Informa a versao do zabbix Server
-#print get_zserver_version()
+print "Zabbix Server:", get_zserver_version()
 
 # Lista todos os hosts
-#print get_all_hosts()
+print "\nServidores:"
+get_all_hosts_monitored()
