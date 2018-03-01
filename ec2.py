@@ -9,7 +9,7 @@ import sys
 import os
 import yaml
 
-PROFILE = 'kptesteab'
+PROFILE = '$profile'
 
 def init_session():
     s = boto3.Session(profile_name=PROFILE)
